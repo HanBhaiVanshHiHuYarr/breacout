@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Modal() {
+    const navigate = useNavigate();
 	return (
 		<div className=' modal-blur fixed w-screen h-screen flex items-center justify-center '>
 			<div className='w-2/5 h-auto bg-white drop-shadow-lg rounded-xl px-6 pt-10'>
@@ -22,7 +24,11 @@ export default function Modal() {
 						<h2 className='text-breacout900 font-semibold text-center text-xl'>
 							Yeah
 						</h2>
-						<button className='rounded bg-breacout900 px-4 py-2 text-white text-xl font-semibold w-4/5'>
+						<button
+							onClick={() => {
+								navigate("/main");
+							}}
+							className='rounded bg-breacout900 px-4 py-2 text-white text-xl font-semibold w-4/5'>
 							Hop In
 						</button>
 					</div>
@@ -30,7 +36,11 @@ export default function Modal() {
 						<h2 className='text-pink-600 font-semibold text-center text-xl'>
 							Okay I'll
 						</h2>
-						<button className='rounded bg-pink-600 px-4 py-2 text-white text-xl font-semibold w-4/5'>
+						<button
+							onClick={() => {
+								navigate(-1);
+							}}
+							className='rounded bg-pink-600 px-4 py-2 text-white text-xl font-semibold w-4/5'>
 							Work
 						</button>
 					</div>
