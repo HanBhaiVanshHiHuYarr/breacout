@@ -6,3 +6,8 @@
   margin:0px;
   box-sizing: border-box;
 }
+
+.modal-blur{
+background: rgba(112, 112, 112, 0.2);
+backdrop-filter: blur(10px);
+}

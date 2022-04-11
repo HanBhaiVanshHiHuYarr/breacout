@@ -3,8 +3,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				breacout900: "#427785",
+				breacout900: "#007EA4",
 				breacout100: "#f0f9ff",
+				breacout300: "#5EA9BE",
+				black: "#323232",
 			},
 		},
 	},
