@@ -23,10 +23,12 @@ export default function Modal() {
 					<div className='w-1/2 flex flex-col items-center'>
 						<h2 className='text-breacout900 font-semibold text-center text-xl'>
 							Yeah
-						</h2>
+						</h2> 
 						<button
 							onClick={() => {
+								//start the timer
 								navigate("/main");
+								// pass user id as state
 							}}
 							className='rounded bg-breacout900 px-4 py-2 text-white text-xl font-semibold w-4/5'>
 							Hop In
