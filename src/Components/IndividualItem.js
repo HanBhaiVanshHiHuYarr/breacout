@@ -2,7 +2,7 @@ import React from "react";
 
 function IndividualItem({ address, name, isOnline }) {
 	return (
-		<div className='w-4/5 h-12 bg-white rounded-md flex items-center relative my-2 hover:shadow-lg '>
+		<div className='w-4/5 h-12 bg-white rounded-md cursor-default flex items-center relative my-2 hover:shadow-lg '>
 			<img src={address} alt='Politics group icon' className='px-2' />
 			<h2 className='font-semibold text-breacout900 text-lg'>{name}</h2>
 			{isOnline && (

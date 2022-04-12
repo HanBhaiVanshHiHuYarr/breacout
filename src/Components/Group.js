@@ -13,7 +13,7 @@ import Join from "../Assets/Join.png";
 import ColleageItem from "./ColleageItem";
 import CreateGroup from "./CreateGroup";
 
-function Group({ setGroup }) {
+function Group({ setGroup , isJoined, join}) {
 	const [selected, setSelected] = useState("All Colleagues");
 	const peopledata = {
 		AllColleagues: [
@@ -63,24 +63,28 @@ function Group({ setGroup }) {
 							name='All Colleagues'
 							members={8}
 							onchange={setSelected}
+							setJoin={isJoined}
 						/>
 						<GroupItem
 							address={Movies}
 							name='Movies'
 							members={5}
 							onchange={setSelected}
+							setJoin={isJoined}
 						/>
 						<GroupItem
 							address={Party}
 							name='Party'
 							members={4}
 							onchange={setSelected}
+							setJoin={isJoined}
 						/>
 						<GroupItem
 							address={Timepass}
 							name='Timepass'
 							members={3}
 							onchange={setSelected}
+							setJoin={isJoined}
 						/>
 						<CreateGroup />
 					</div>
@@ -114,12 +118,25 @@ function Group({ setGroup }) {
 						return <ColleageItem address={item.image} name={item.name} />;
 					})}
 
-					{selected != "All Colleagues" && (
-						<div className='w-4/5 h-12 bg-green-200 rounded-md flex items-center relative my-2  hover:shadow-lg'>
-							<img src={Join} alt='Join icon' className='px-2' />
-							<h2 className='font-bold text-green-700 text-lg'>Join Them</h2>
-						</div>
-					)}
+					{selected != "All Colleagues" &&
+						(join ? (
+							<button
+								onClick={() => {
+									isJoined(false);
+								}}
+								className='bg-rose-100 text-rose-600 p-2 text-lg font-bold rounded-full px-8'>
+								Leave
+							</button>
+						) : (
+							<div
+								onClick={() => {
+									isJoined(true);
+								}}
+								className='w-4/5 h-12 bg-green-200 rounded-md flex items-center relative my-2  hover:shadow-lg'>
+								<img src={Join} alt='Join icon' className='px-2' />
+								<h2 className='font-bold text-green-700 text-lg'>Join Them</h2>
+							</div>
+						))}
 				</div>
 			</div>
 		</>
