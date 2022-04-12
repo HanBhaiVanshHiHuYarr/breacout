@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GroupItem from "./GroupItem";
-import Politics from "../Assets/Group Icons/Politics.png";
+import AllColleagues from "../Assets/Group Icons/Politics.png";
 import Movies from "../Assets/Group Icons/Movies.png";
 import Party from "../Assets/Group Icons/Party.png";
 import Timepass from "../Assets/Group Icons/Timepass.png";
@@ -9,10 +9,47 @@ import Avatar1 from "../Assets/People Images/Ellipse 1.png";
 import Avatar2 from "../Assets/People Images/Ellipse 2.png";
 import Avatar3 from "../Assets/People Images/Ellipse 3.png";
 import Avatar4 from "../Assets/People Images/Ellipse 4.png";
+import Join from "../Assets/Join.png";
 import ColleageItem from "./ColleageItem";
 import CreateGroup from "./CreateGroup";
 
-function Group() {
+function Group({ setGroup }) {
+	const [selected, setSelected] = useState("All Colleagues");
+	const peopledata = {
+		AllColleagues: [
+			{ name: "Devansh Bansal", image: Avatar1 },
+			{ name: "Dev Wadhwa", image: Avatar2 },
+			{ name: "Ayush Meena", image: Avatar3 },
+			{ name: "Pulkesh Parwani", image: Avatar4 },
+			{ name: "Divyansh Jain", image: Avatar1 },
+			{ name: "Tamanna Arora", image: Avatar2 },
+			{ name: "Ayush Chopra", image: Avatar3 },
+			{ name: "Pranay Bansal", image: Avatar4 },
+		],
+		Movies: [
+			{ name: "Pulkesh Parwani", image: Avatar4 },
+			{ name: "Divyansh Jain", image: Avatar1 },
+			{ name: "Tamanna Arora", image: Avatar2 },
+			{ name: "Ayush Chopra", image: Avatar3 },
+			{ name: "Pranay Bansal", image: Avatar4 },
+		],
+		Party: [
+			{ name: "Devansh Bansal", image: Avatar1 },
+			{ name: "Dev Wadhwa", image: Avatar2 },
+			{ name: "Ayush Meena", image: Avatar3 },
+			{ name: "Pulkesh Parwani", image: Avatar4 },
+		],
+		Timepass: [
+			{ name: "Pulkesh Parwani", image: Avatar4 },
+			{ name: "Divyansh Jain", image: Avatar1 },
+			{ name: "Tamanna Arora", image: Avatar2 },
+		],
+	};
+
+	useEffect(() => {
+		setGroup(selected);
+	}, [selected]);
+
 	return (
 		<>
 			<div className='h-full w-1/6 bg-main200'>
@@ -21,10 +58,30 @@ function Group() {
 						Groups
 					</h2>
 					<div className='flex flex-col items-center max-h-4/5'>
-						<GroupItem address={Politics} name='All Colleagues' members={10} />
-						<GroupItem address={Movies} name='Movies' members={3} />
-						<GroupItem address={Party} name='Party' members={5} />
-						<GroupItem address={Timepass} name='Timepass' members={2} />
+						<GroupItem
+							address={AllColleagues}
+							name='All Colleagues'
+							members={8}
+							onchange={setSelected}
+						/>
+						<GroupItem
+							address={Movies}
+							name='Movies'
+							members={5}
+							onchange={setSelected}
+						/>
+						<GroupItem
+							address={Party}
+							name='Party'
+							members={4}
+							onchange={setSelected}
+						/>
+						<GroupItem
+							address={Timepass}
+							name='Timepass'
+							members={3}
+							onchange={setSelected}
+						/>
 						<CreateGroup />
 					</div>
 				</div>
@@ -50,15 +107,19 @@ function Group() {
 			</div>
 			<div className='h-full w-1/6 bg-main100'>
 				<h2 className='text-center p-2 font-semibold text-black text-2xl'>
-					{/* Change Dynammically according to option selected on left  */}
-					All Colleagues
+					{selected}
 				</h2>
 				<div className='flex flex-col items-center max-h-4/5'>
-					{/* Change Dynammically according to option selected on left  */}
-					<ColleageItem address={Avatar1} name='Devansh Bansal' />
-					<ColleageItem address={Avatar2} name='Dev Wadhwa' />
-					<ColleageItem address={Avatar3} name='Ayush Meena' />
-					<ColleageItem address={Avatar4} name='Pulkesh Parwani' />
+					{peopledata[selected.replace(/\s+/g, "")].map((item) => {
+						return <ColleageItem address={item.image} name={item.name} />;
+					})}
+
+					{selected != "All Colleagues" && (
+						<div className='w-4/5 h-12 bg-green-200 rounded-md flex items-center relative my-2  hover:shadow-lg'>
+							<img src={Join} alt='Join icon' className='px-2' />
+							<h2 className='font-bold text-green-700 text-lg'>Join Them</h2>
+						</div>
+					)}
 				</div>
 			</div>
 		</>
